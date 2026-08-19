@@ -1,3 +1,7 @@
+# Integrantes
+- `Sergio Gómez - 26882`
+- `Jonathan Gutierrez - 26415`
+
 # ClinicaVeterinaria2B
 
 # Análisis
@@ -49,12 +53,12 @@ métodos `public`
 - `addPeso(double peso)`
     - `peso`
 - `getPesoBy(int numeroControl)`
-    -`numeroControl`
+    - `numeroControl`
 - `updatePeso(int numeroControl, double nuevoPeso)`
-    -`numeroControl, nuevoPeso`
+    - `numeroControl, nuevoPeso`
 - `Mascota(String nombre, tipoEspecie especie, int edad)`
-    -`nombre, tipoEspecie, edad`
-
+    - `nombre, tipoEspecie, edad`
+ 
 los métodos restantes no usaran parámetros 
 
 ### 6. ¿Cómo proveerá de valores iniciales a sus objetos? ¿Qué valores iniciales les asignará?
