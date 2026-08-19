@@ -73,4 +73,4 @@ El control de peso se inciará desde `0`, se recorrerá el arreglo con un ciclo 
 
 ### 8. ¿Cómo recorrerá únicamente las posiciones del arreglo que contienen controles de peso registrados
 
-Se recorrerá el cada posición del arreglo utilizando un foreach y una validación que solo permita avanzar si la posición en el arreglo es diferente a null, si la validación se da (si existe algo almacenado), pasará a la siguietne posición hasta encontrar una posición sin valor en la que pueda guardar un nuevo control de peso.
+Se recorrerá el cada posición del arreglo utilizando un foreach y una validación que solo permita avanzar si la posición en el arreglo es diferente a `0.0`, si la validación se da (si existe algo almacenado), pasará a la siguietne posición hasta encontrar una posición sin valor en la que pueda guardar un nuevo control de peso.
