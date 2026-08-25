@@ -1,14 +1,15 @@
 package model;
+import java.time.LocalDate;
 import constants.TipoEspecie;
 
 public class Mascota {
     
     private String nombre;
-    private int edad;
+    private LocalDate edad;
     private double[] control;
     private TipoEspecie tipoEspecie;
 
-    public Mascota(String nombre, int edad, TipoEspecie tipoEspecie){
+    public Mascota(String nombre, LocalDate edad, TipoEspecie tipoEspecie){
         this.nombre = nombre;
         this.edad = edad;
         this.tipoEspecie = tipoEspecie;
@@ -23,7 +24,15 @@ public class Mascota {
         this.nombre = nombreNuevo;
     }
 
-    public int getEdad(){
+    public LocalDate getEdad(){
         return edad;
+    }
+
+    public void setEdad(LocalDate edadNueva) {
+        this.edad = edadNueva;
+    }
+
+    public TipoEspecie getTipTipoEspecie() {
+        return tipoEspecie;
     }
 }
