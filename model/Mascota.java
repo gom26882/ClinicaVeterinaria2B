@@ -7,6 +7,7 @@ public class Mascota {
     private int edad;
     private double[] control;
     private TipoEspecie tipoEspecie;
+    private int CantidadControles;
 
     public Mascota(String nombre, int edad, TipoEspecie tipoEspecie){
         this.nombre = nombre;
