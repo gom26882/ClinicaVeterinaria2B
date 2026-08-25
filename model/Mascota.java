@@ -8,6 +8,7 @@ public class Mascota {
     private LocalDate edad;
     private double[] control;
     private TipoEspecie tipoEspecie;
+    private int CantidadControles;
 
     public Mascota(String nombre, LocalDate edad, TipoEspecie tipoEspecie){
         this.nombre = nombre;
