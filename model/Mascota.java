@@ -41,7 +41,7 @@ public class Mascota {
         this.edad = edadNueva;
     }
 
-    public TipoEspecie getTipTipoEspecie() {
+    public TipoEspecie getTipoEspecie() {
         return tipoEspecie;
     }
 }
