@@ -32,16 +32,16 @@ public class MascotaController {
                     historialPesos(); 
                     break;
                 case 4:
-                    // consultarControl();
+                    consultarControl();
                     break;
                 case 5:
-                    // actualizarControl();
+                    actualizarControl();
                     break;
                 case 6:
-                    // promedioPesos();
+                    promedioPesos();
                     break;
                 case 7:
-                    // pesoMayorMenor();
+                    pesoMayorMenor();
                     break;
                 case 8:
                     controlesDisponibles(); 
@@ -109,7 +109,7 @@ public class MascotaController {
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append(" HISTORIAL DE PESOS: ").append(mascota.getNombre());
+        sb.append(" HISTORIAL DE PESOS:\n").append(mascota.getNombre());
         
         double[] controles = mascota.getControl();
         
@@ -144,5 +144,112 @@ public class MascotaController {
             }
         }
         return null;
+    }
+
+    private void consultarControl(){
+        if(listaMascotas.isEmpty()){
+            view.mostrarMensaje("Debe registrar una mascota de primero");
+            return;
+        }
+
+        Mascota mascota = buscarMascota(view.pedirIdMascota());
+
+        if (mascota == null){
+            view.mostrarMensaje("No se encontró la mascota");
+            return;
+        }
+
+        int numeroControl = view.pedirNumeroControl();
+        double peso = mascota.getPesoBy(numeroControl);
+
+        if ( peso == -1){
+            view.mostrarMensaje("El control ingresado no existe");
+            return;
+        }
+
+        view.mostrarMensaje(
+            "Control #" + numeroControl + "\nPeso: " + peso + " kg"
+        );
+    }
+
+    private void actualizarControl(){
+        if(listaMascotas.isEmpty()){
+            view.mostrarMensaje("Debe registrar una mascota de primero");
+            return;
+        }
+
+        Mascota mascota = buscarMascota(view.pedirIdMascota());
+
+        if( mascota == null){
+            view.mostrarMensaje("No se encontró la mascota");
+            return;
+        }
+
+        int numeroControl = view.pedirNumeroControl();
+        double nuevoPeso = view.pedirNumeroControl();
+
+        boolean pesoActualizado = mascota.updatePeso(numeroControl, nuevoPeso);
+
+        if(pesoActualizado == true ){
+            view.mostrarMensaje(
+            "Control #" + numeroControl +
+                " actualizado correctamente.\n" +
+                "Nuevo peso: " + nuevoPeso + " kg"
+            );
+        } else{
+            view.mostrarMensaje("No es posible actualizar el control \n" +
+                "Porfavor verifique el número de control y el peso"
+            );   
+        }
+    }
+
+    private void promedioPesos(){
+        if(listaMascotas.isEmpty()){
+            view.mostrarMensaje("Debe registrar una mascota de primero");
+            return;
+        }
+
+        Mascota mascota = buscarMascota(view.pedirIdMascota());
+
+        if( mascota == null){
+            view.mostrarMensaje("No se encontró la mascota");
+            return;
+        }
+
+        double promedioPesos = mascota.calcularPromedio();
+
+        if(promedioPesos == -1 ){
+            view.mostrarMensaje("La mascota no tiene controles");
+            return;
+        } else {
+            view.mostrarMensaje("Promedio: " + promedioPesos + " kg");
+        }
+    }
+
+    private void pesoMayorMenor(){
+        if(listaMascotas.isEmpty()){
+            view.mostrarMensaje("Debe registrar una mascota de primero");
+            return;
+        }
+
+        Mascota mascota = buscarMascota(view.pedirIdMascota());
+
+        if( mascota == null){
+            view.mostrarMensaje("No se encontró la mascota");
+            return;
+        }
+
+        double pesoMayor = mascota.getPesoMayor();
+        double pesoMenor = mascota.getPesoMenor();
+
+        if(pesoMayor == -1 ){
+            view.mostrarMensaje("La mascota no tiene controles");
+            return;
+        } else {
+            view.mostrarMensaje(
+                "Peso mayor: " + pesoMayor + " kg\n" +
+                "Peso menor: " + pesoMenor + " kg"
+            );
+        }
     }
 }
