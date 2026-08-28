@@ -12,15 +12,29 @@ public class MascotaView {
     public LocalDate pedirEdad() {
         return LocalDate.parse(JOptionPane.showInputDialog("Ingrese la fecha de nacimiento de la mascota (YYYY-MM-DD)..."));
     }
+      
 
-    public String pedirTipoEspecie() {
-        return JOptionPane.showInputDialog( "Ingrese la especie:\n" +
-            "PERRO\n" +
-            "GATO\n" +
-            "HURON\n" +
-            "CONEJO\n" +
-            "HAMSTER\n" +
-            "SERPIENTE");
+    public String pedirTipoEspecie(){
+        String[] especies ={
+            "PERRO",
+            "GATO",
+            "HURON",
+            "CONEJO",
+            "HAMSTER",
+            "SERPIENTE"
+        };
+
+        String especieSeleccionada = (String) JOptionPane.showInputDialog(
+            null,
+            "Selecciona la especie:",
+            "Tipo de especie",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            especies,
+            especies[0]
+        );
+
+        return especieSeleccionada;
     }
 
     public int pedirIdMascota() {
@@ -31,20 +45,26 @@ public class MascotaView {
         return Double.parseDouble(JOptionPane.showInputDialog("Ingrese el peso en kg:"));
     }
 
+    public int pedirNumeroControl(){
+        return Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de control"));
+    }
+
     public int mostrarMenu() {
         while (true) {
             String entrada = JOptionPane.showInputDialog(
-                "CONTROL DE PESO\n\n" +
-                "1. Agregar mascota\n" +
-                "2. Nuevo control de peso\n" +
-                "3. Historial de pesos\n" +
-                "4. Consultar un control\n" +
-                "5. Actualizar un control\n" +
-                "6. Promedio\n" +
-                "7. Peso mayor y menor\n" +
-                "8. Controles disponibles\n" +
-                "9. Salir\n\n" +
-                "Seleccione una opción:"
+                "<html>" +
+                "<h2>CONTROL DE PESO</h2>" +
+                "1. Agregar mascota<br>" +
+                "2. Nuevo control de peso<br>" +
+                "3. Historial de pesos<br>" +
+                "4. Consultar un control<br>" +
+                "5. Actualizar un control<br>" +
+                "6. Promedio<br>" +
+                "7. Peso mayor y menor<br>" +
+                "8. Controles disponibles<br>" +
+                "9. Salir<br><br>" +
+                "Seleccione una opción:" +
+                "</html>"
             );
 
             try {
