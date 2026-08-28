@@ -1,22 +1,57 @@
 package view;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class MascotaView {
 
     public String pedirNombre() {
-        return JOptionPane.showInputDialog("Ingrese el nombre de la mascota...");
+
+        while (true) {
+
+            String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la mascota..." );
+
+            if (nombre == null) {
+                return null;
+            }
+
+            if (!nombre.trim().isEmpty() && !nombre.matches("\\d+")) {
+                return nombre;
+            }
+
+            JOptionPane.showMessageDialog(null,"Ingrese un nombre válido" );
+        }
     }
+
 
     public LocalDate pedirEdad() {
-        return LocalDate.parse(JOptionPane.showInputDialog("Ingrese la fecha de nacimiento de la mascota (YYYY-MM-DD)..."));
-    }
-      
 
-    public String pedirTipoEspecie(){
-        String[] especies ={
+        while (true) {
+
+            String entrada = JOptionPane.showInputDialog("Ingrese la fecha de nacimiento de la mascota (YYYY-MM-DD)...");
+
+            if (entrada == null) {
+                return null;
+            }
+
+            try {
+                return LocalDate.parse(entrada);
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Fecha inválida.\nUse el formato YYYY-MM-DD"
+                );
+            }
+        }
+    }
+
+
+    public String pedirTipoEspecie() {
+
+        String[] especies = {
             "PERRO",
             "GATO",
             "HURON",
@@ -38,17 +73,77 @@ public class MascotaView {
         return especieSeleccionada;
     }
 
+
     public int pedirIdMascota() {
-        return Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la mascota:"));
+
+        while (true) {
+
+            String entrada = JOptionPane.showInputDialog("Ingrese el ID de la mascota:");
+
+            try {
+                int id = Integer.parseInt(entrada);
+
+                if (id > 0) {
+                    return id;
+                }
+
+                JOptionPane.showMessageDialog(null, "El ID debe ser mayor que 0" );
+
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog( null, "Ingrese un ID válido" );
+            }
+        }
     }
+
 
     public double pedirPesoControl() {
-        return Double.parseDouble(JOptionPane.showInputDialog("Ingrese el peso en kg:"));
+
+        while (true) {
+
+            String entrada = JOptionPane.showInputDialog("Ingrese el peso en kg:");
+
+            try {
+
+                double peso = Double.parseDouble(entrada);
+
+                if (peso > 0) {
+                    return peso;
+                }
+
+                JOptionPane.showMessageDialog(   null, "El peso debe ser mayor que 0" );
+
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(  null, "Ingrese un peso válido");
+            }
+        }
     }
 
-    public int pedirNumeroControl(){
-        return Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de control"));
+
+    public int pedirNumeroControl() {
+
+        while (true) {
+
+            String entrada = JOptionPane.showInputDialog("Ingrese el número de control:"  );
+
+            try {
+
+                int numeroControl = Integer.parseInt(entrada);
+
+                if (numeroControl > 0) {
+                    return numeroControl;
+                }
+
+                JOptionPane.showMessageDialog(null, "El número de control debe ser mayor que 0" );
+
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(null, "Ingrese un número de control válido" );
+            }
+        }
     }
+
 
     public int mostrarMenu() {
 
@@ -75,22 +170,26 @@ public class MascotaView {
 
             if (entrada == null) {
                 return 9;
-            } try {
+            }
+
+            try {
 
                 int opcion = Integer.parseInt(entrada);
-                return opcion;
+
+                if (opcion >= 1 && opcion <= 9) {
+                    return opcion;
+                }
+
+                JOptionPane.showMessageDialog(null,"Ingrese una opción entre 1 y 9");
 
             } catch (NumberFormatException e) {
 
-                JOptionPane.showMessageDialog(
-                    null,
-                    "El menú solo acepta números"
-                );
+                JOptionPane.showMessageDialog(null,"El menú solo acepta números");
             }
         }
     }
 
     public void mostrarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(null, mensaje);
-    }  
+        JOptionPane.showMessageDialog(null,mensaje);
+    }
 }
