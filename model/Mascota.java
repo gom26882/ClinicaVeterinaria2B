@@ -1,27 +1,38 @@
 package model;
+
 import java.time.LocalDate;
 import constants.TipoEspecie;
 
 public class Mascota {
     
-    private int contador = 0;
-    private int id = 0;
+    private static int contador = 0; 
+    private int id;
     private String nombre;
     private LocalDate edad;
     private double[] control;
     private TipoEspecie tipoEspecie;
+    private int cantidadControles; // Controla la posición actual en el arreglo
 
-    public Mascota(String nombre, LocalDate edad, TipoEspecie tipoEspecie){
+    public Mascota(String nombre, LocalDate edad, TipoEspecie tipoEspecie) {
         contador++;
         this.id = contador;
         this.nombre = nombre;
         this.edad = edad;
         this.tipoEspecie = tipoEspecie;
         this.control = new double[10];
-        id = id+1; 
+        this.cantidadControles = 0;
     }
 
-    public int getId(){
+    public boolean setControl(double peso) {
+        if (this.cantidadControles < this.control.length) {
+            this.control[this.cantidadControles] = peso;
+            this.cantidadControles++;
+            return true;
+        }
+        return false;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -33,7 +44,7 @@ public class Mascota {
         this.nombre = nombreNuevo;
     }
 
-    public LocalDate getEdad(){
+    public LocalDate getEdad() {
         return edad;
     }
 
@@ -43,5 +54,13 @@ public class Mascota {
 
     public TipoEspecie getTipoEspecie() {
         return tipoEspecie;
+    }
+
+    public double[] getControl() {
+        return control;
+    }
+    
+    public int getCantidadControles() {
+        return cantidadControles;
     }
 }
