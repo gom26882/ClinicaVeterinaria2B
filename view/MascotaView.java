@@ -2,6 +2,7 @@ package view;
 
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class MascotaView {
 
@@ -50,7 +51,12 @@ public class MascotaView {
     }
 
     public int mostrarMenu() {
+
+        UIManager.put("OptionPane.cancelButtonText", "Salir");
+        UIManager.put("OptionPane.okButtonText", "Aceptar");
+
         while (true) {
+
             String entrada = JOptionPane.showInputDialog(
                 "<html>" +
                 "<h2>CONTROL DE PESO</h2>" +
@@ -67,11 +73,19 @@ public class MascotaView {
                 "</html>"
             );
 
-            try {
+            if (entrada == null) {
+                return 9;
+            } try {
+
                 int opcion = Integer.parseInt(entrada);
                 return opcion;
+
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null,"El menú solo acepta números");
+
+                JOptionPane.showMessageDialog(
+                    null,
+                    "El menú solo acepta números"
+                );
             }
         }
     }
