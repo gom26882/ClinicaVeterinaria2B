@@ -1,19 +1,19 @@
 package view;
-import java.time.LocalDate;
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 public class MascotaView {
 
-    public String pedirNombre(){
+    public String pedirNombre() {
         return JOptionPane.showInputDialog("Ingrese el nombre de la mascota...");
     }
 
-    public LocalDate PedirEdad(){
+    public LocalDate pedirEdad() {
         return LocalDate.parse(JOptionPane.showInputDialog("Ingrese la fecha de nacimiento de la mascota (YYYY-MM-DD)..."));
     }
 
-    public String pedirTipoEspecie(){
+    public String pedirTipoEspecie() {
         return JOptionPane.showInputDialog( "Ingrese la especie:\n" +
             "PERRO\n" +
             "GATO\n" +
@@ -23,7 +23,15 @@ public class MascotaView {
             "SERPIENTE");
     }
 
-    public int mostrarMenu(){
+    public int pedirIdMascota() {
+        return Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la mascota:"));
+    }
+
+    public double pedirPesoControl() {
+        return Double.parseDouble(JOptionPane.showInputDialog("Ingrese el peso en kg:"));
+    }
+
+    public int mostrarMenu() {
         while (true) {
             String entrada = JOptionPane.showInputDialog(
                 "CONTROL DE PESO\n\n" +
@@ -42,14 +50,11 @@ public class MascotaView {
             try {
                 int opcion = Integer.parseInt(entrada);
                 return opcion;
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null,"El menú solo acepta números");
             }
-
         }
     }
-
-
 
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
